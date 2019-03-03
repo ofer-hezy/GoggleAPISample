@@ -91,6 +91,9 @@
 						<td data-ng-repeat="cell in row">{{cell}}</td>
 					</tr>
 				</table>
+				<div data-ng-if="eroor != null">
+					{{error}}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -123,14 +126,17 @@
 				}
 				$scope.view = function() {
 					updateURL();
+					$scope.error = null;
 					$http({
 						url : $scope.sheet.url,
 						method : "GET",
 						responseType : "application/json"
-					}).then(function(response) {
-						$scope.response = response.data;
-
-					});
+					}).then(
+						function(response) {
+						$scope.response = response.data;},
+						function(response) {
+						$scope.error = response.data;}
+					 );
 				}
 				//init
 				$scope.reset();
