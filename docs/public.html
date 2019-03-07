@@ -73,14 +73,16 @@
 
 				
 				
-				<table class="table" data-ng-if="response != null">
+				<table class="table table-bordered table-hover" data-ng-if="response != null">
 				   <caption>
 				    <input type="text" data-ng-model="filterBy" class="form-control"
-								id="filter" placeholder="filter data ..">
+								id="filter" placeholder="Filter data ..">
 				   </caption>
+				   <tbody>
 					<tr data-ng-repeat="row in response.values | filter:filterBy">
 						<td data-ng-repeat="cell in row">{{cell}}</td>
 					</tr>
+					</tbody>
 				</table>
 				<div class="alert alert-danger" data-ng-if="error != null">
 					{{error}}
@@ -99,9 +101,7 @@
 				var _id = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
 				var _range = "A1:Z10";
 				
-			
-
-				$scope.reset = function() {
+			    $scope.reset = function() {
 					$scope.sheet = {};
 					$scope.api = {};
 					
