@@ -47,6 +47,13 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="api.majorDimension" class="col-sm-1 control-label">Major Dimension:</label>
+							<div class="col-sm-11">
+								<input type="text" data-ng-model="api.majorDimension" class="form-control"
+									id="sheet.id" placeholder="COLUMNS | ROWS">
+							</div>
+						</div>
+						<div class="form-group">
 							<label for="api.key" class="col-sm-1 control-label">API
 								key:</label>
 							<div class="col-sm-11">
@@ -54,6 +61,7 @@
 									id="sheet.id" placeholder="Google API key">
 							</div>
 						</div>
+						
 						<div class="form-group">
 						 <div class="col-sm-2"></div>
 						 <div class="col-sm-3">
@@ -99,6 +107,7 @@
 				var _baseurl = "https://sheets.googleapis.com/v4/spreadsheets/";
 				var _key = "AIzaSyBYDYxPD166O3ugiKn_kBV-9fXJf0aeq20";
 				var _id = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
+				var _dimation = "ROWS";
 				var _range = "A1:Z10";
 				
 			    $scope.reset = function() {
@@ -108,11 +117,12 @@
 					$scope.sheet.id = _id;
 					$scope.sheet.range = _range;
 					$scope.api.key = _key;
+					$scope.api.majorDimension = _dimation;
 					updateURL();
 				}
 				function updateURL() {
 					$scope.sheet.url = _baseurl + $scope.sheet.id + "/values/"
-							+ $scope.sheet.range + "?key=" + $scope.api.key;
+							+ $scope.sheet.range + "?majorDimension="+$scope.api.majorDimension+"&key=" + $scope.api.key;
 				}
 				$scope.view = function() {
 					updateURL();
